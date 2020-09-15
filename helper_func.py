@@ -15,6 +15,7 @@ lemmatizer = WordNetLemmatizer()
 stemmer = SnowballStemmer("english")
 from wordcloud import WordCloud, STOPWORDS
 stopwords = set(STOPWORDS)
+%config InlineBackend.figure_format = 'retina'
 
 def remove_accents(input_str):
     '''
@@ -71,7 +72,7 @@ def plot_bar(data, col):
 
     fig = plt.figure()
 
-    ax = new_col.pivot(col, "fraudulent", "counts").plot(kind='bar', figsize=(10,5), title = "Distribution of status per         category")
+    ax = new_col.pivot(col, "fraudulent", "counts").plot(kind='bar', figsize=(10,5), title = "Distribution of status per category")
 
     ax.set_xlabel(col, fontsize=20)
     ax.set_ylabel("Number of Jobs", fontsize=20)
@@ -153,4 +154,11 @@ def plot_wordcloud(data, col):
     ax2.axis('off')
     fig.savefig(f"images/{col}_wordcloud", bbox_inches='tight');
     plt.show()
+    
+    
+def generate_model_report(y_actual, y_predicted):
+    print('Accuracy: %.3f' % accuracy_score(y_actual, y_predicted))
+    print('Precision: %.3f' % precision_score(y_actual, y_predicted))
+    print( 'Recall: %.3f' % recall_score(y_actual, y_predicted))
+    print('F1 score: %.3f' % f1_score(y_actual, y_predicted))
     
