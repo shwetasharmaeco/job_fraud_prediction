@@ -15,7 +15,100 @@ lemmatizer = WordNetLemmatizer()
 stemmer = SnowballStemmer("english")
 from wordcloud import WordCloud, STOPWORDS
 stopwords = set(STOPWORDS)
-%config InlineBackend.figure_format = 'retina'
+from imblearn.over_sampling import SMOTE, RandomOverSampler
+from imblearn.under_sampling import RandomUnderSampler
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.model_selection import KFold
+from sklearn.metrics import accuracy_score, precision_score, recall_score, confusion_matrix, f1_score
+
+def balance_train_data(X, y, method=None):
+    '''
+    Balances the data passed in according to the specified method.
+    '''
+    if method == "None":
+        return X, y
+
+    elif method == 'undersampling':
+        rus = RandomUnderSampler()
+        X_train, y_train = rus.fit_resample(X, y)
+        return X_train, y_train
+
+    elif method == 'oversampling':
+        ros = RandomOverSampler()
+        X_train, y_train = ros.fit_resample(X, y)
+        return X_train, y_train
+
+    elif method == 'smote':
+        smote = SMOTE()
+        X_train, y_train = smote.fit_resample(X, y)
+        return X_train, y_train
+
+    elif method == 'both':
+        smote = SMOTE(sampling_strategy=0.75)
+        under = RandomUnderSampler(sampling_strategy=1)
+        X_train, y_train = smote.fit_resample(X, y)
+        X_train, y_train = under.fit_resample(X_train, y_train)
+        return X_train, y_train
+
+    else:
+        print('Incorrect balance method')
+        return
+    
+    
+def run_model(estimators, X, y, sampling_method,ax, names ):
+    
+    kf = KFold(n_splits=5, shuffle=True)
+    f1 = []
+    precisions=[]
+    recalls=[]
+    
+    for i in range(len(estimators)):
+        precisions.append([]) 
+        recalls.append([])
+        f1.append([])
+    
+    for train_idx, test_idx in kf.split(X):
+        X_train = X[train_idx]
+        y_train = y[train_idx]
+        X_test = X[test_idx]
+        y_test = y[test_idx]
+        
+        
+        
+        X_train_new, y_train_new = balance_train_data(X_train, y_train, method=sampling_method)
+        
+        for i, estimator in enumerate(estimators):
+            estimator.fit(X_train_new, y_train_new)
+            y_probs = estimator.predict_proba(X_test)
+            y_probs = y_probs[:,1]
+            y_pred = estimator.predict(X_test)
+            
+            auc_precision, auc_recall, _ = precision_recall_curve(y_test, y_probs)
+            auc_f1, auc_auc = f1_score(y_test, y_pred), auc(auc_recall, auc_precision)
+            
+            precisions[i].append(precision_score(y_test, y_pred))
+            recalls[i].append(recall_score(y_test, y_pred))
+            f1[i].append(f1_score(y_test, y_pred))
+            
+    x = range(0, 5)
+    colormap = {0 : 'r',
+                1 : 'b',
+                2 : 'g', 
+                3 : 'c', 
+                4 : 'm'}
+    
+    
+    for i in range(len(estimators)):
+        ax.plot(x, precisions[i], c=colormap[i], 
+                linewidth=1, linestyle='-',
+                label='%s Precision' % names[i])
+        ax.plot(x, recalls[i], c=colormap[i], 
+                linewidth=1, linestyle='--',
+                label='%s Recall' % names[i])
+        ax.plot(x, f1[i], c=colormap[i],
+                linewidth=1, linestyle='-.',
+                label='%s f1_score' % names[i])
+        
 
 def remove_accents(input_str):
     '''
@@ -161,4 +254,29 @@ def generate_model_report(y_actual, y_predicted):
     print('Precision: %.3f' % precision_score(y_actual, y_predicted))
     print( 'Recall: %.3f' % recall_score(y_actual, y_predicted))
     print('F1 score: %.3f' % f1_score(y_actual, y_predicted))
+    
+    
+def clean_features(df):
+    df["location"] = df["location"].apply(lambda x: x.split(","))
+    df["location"] = df["location"].apply(lambda x: str(x[0])) # Only keeping countries from location column
+    df.loc[~df.location.isin(["US", "GB", "GR", "CA", "DE", "Not Specified", "NZ","IN", "AU", "PH", "NL","BE", "IE"]), "location"]= "Other"
+    df.loc[df['required_education'].str.contains('Vocational'), 'required_education'] = "Vocational"
+    df.loc[df['required_education'].str.contains('High School'), 'required_education'] = "High School"
+    df.loc[df['required_education'].str.contains('College'), 'required_education'] = "Bachelor's Degree"
+    df.loc[df['industry'].str.contains('Computer'), 'industry'] = "IT"
+    df.loc[df['industry'].str.contains('Information'), 'industry'] = "IT"
+    df.loc[df['industry'].str.contains('Internet'), 'industry'] = "IT"
+    df.loc[df['industry'].str.contains('Insurance'), 'industry'] = "Financial Services"
+    df.loc[df['industry'].str.contains('Accounting'), 'industry'] = "Financial Services"
+    df.loc[df['industry'].str.contains('Health'), 'industry'] = "Health Care"
+    df.loc[df['industry'].str.contains('E-Learning'), 'industry'] = "Education"
+    df.loc[df['industry'].str.contains('Education'), 'industry'] = "Education"
+    df.loc[df['industry'].str.contains('Recruiting'), 'industry'] = "HR"
+    df.loc[df['industry'].str.contains('Human Resources'), 'industry'] = "HR"
+    
+    # value_counts less than 100 set to "Others"
+    counts = df["industry"].value_counts()
+    idx = counts[counts.lt(100)].index
+
+    df.loc[df["industry"].isin(idx), "industry"] = 'Others'
     
