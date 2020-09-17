@@ -19,7 +19,7 @@ from imblearn.over_sampling import SMOTE, RandomOverSampler
 from imblearn.under_sampling import RandomUnderSampler
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.model_selection import KFold
-from sklearn.metrics import accuracy_score, precision_score, recall_score, confusion_matrix, f1_score
+from sklearn.metrics import accuracy_score, precision_score, recall_score, confusion_matrix, f1_score, precision_recall_curve, auc
 
 def balance_train_data(X, y, method=None):
     '''
@@ -161,16 +161,17 @@ def fill_nulls(data):
     
 def plot_bar(data, col):
     
+    fig = plt.figure()
+    
     new_col = data.groupby([col,"fraudulent"]).size().reset_index(name="counts")
 
-    fig = plt.figure()
-
-    ax = new_col.pivot(col, "fraudulent", "counts").plot(kind='bar', figsize=(10,5), title = "Distribution of status per category")
+    ax = new_col.pivot(col, "fraudulent", "counts").plot(kind='bar', figsize=(10,5))
 
     ax.set_xlabel(col, fontsize=20)
     ax.set_ylabel("Number of Jobs", fontsize=20)
 
-    fig.savefig(f"images/{col}", bbox_inches='tight');
+    fig.savefig(f"images/{col}", bbox_inches='tight')
+    plt.show();
     
 
 def binarize(data, col):
@@ -192,7 +193,7 @@ def plot_text(data, col):
     ax2.hist(length, bins = 20, color="green")
     ax2.set_title('Real job Post')
     fig.suptitle(f'Characters in {col}')
-    fig.savefig(f"images/{col}", bbox_inches='tight')
+    plt.savefig(f"images/{col}", bbox_inches='tight')
     plt.show();
     
     
