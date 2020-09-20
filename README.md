@@ -52,7 +52,8 @@ Having fraud jobs on one's website/app can result in losing users' interest. On 
 
 # Data
 
-The dataset consists of 17,880 real-life job ads that aims at providing a clear picture of the Employment Scam problem including title of the job, location of the job, department, salary range, company, description, benefits, employment_type, required experience, required education', industry. Each row is flagged as fraud or not fraud.
+The dataset consists of 17,880 real-life job ads from 
+[dataset](http://emscad.samos.aegean.gr/download?expires=1600585206032&signature=546a70ad7b553b8c4dac2c0f126e46c7d6b53e21de3a9f3dd622727a274986ca).
 
 ### String Columns
 | | | 
