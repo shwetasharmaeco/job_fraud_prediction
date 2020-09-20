@@ -5,7 +5,7 @@ dating.ipynb: EDA, Base model, TD-IDF, LSTM analysis
 
 helpers.py: helper functions
 
-# Methods Used
+## Methods Used
 
 Data Visualization
 
@@ -17,7 +17,7 @@ Logistic Regression, Random Forest, Gradient Boosting
 
 Recurrent Neural Netrwork: Long short-term memory (LSTM)
 
-# Libraries Used
+## Libraries Used
 
 Pandas
 
@@ -31,11 +31,11 @@ TenserFlow
 
 Keras
 
-# Motivation and Goal
+## Motivation and Goal
 Having fraud jobs on one's website/app can result in losing users' interest. On the other hand flagging non-fraud jobs as fraud jobs may upset genuine companies. Hence, it is really important to correctly predict fraud and not fraud jobs.
 
 
-# Data Pipeline
+##  Data Pipeline
 
 1. Download dataset from The Employment Scam Aegean Dataset (EMSCAD).
 
@@ -50,12 +50,12 @@ Having fraud jobs on one's website/app can result in losing users' interest. On 
 1. Use the trained model to predict the database collated from the data collection pipeline as a means of testing the performance of the model.
 
 
-# Data
+## Data
 
 The dataset consists of 17,880 real-life job ads from 
 [dataset](http://emscad.samos.aegean.gr/download?expires=1600585206032&signature=546a70ad7b553b8c4dac2c0f126e46c7d6b53e21de3a9f3dd622727a274986ca).
 
-### String Columns
+#### String Columns
 | | | 
 |-|-|
 |Name| Description 
@@ -64,7 +64,7 @@ The dataset consists of 17,880 real-life job ads from
 |Department| Corporate department (e.g. sales).
 |Salary range| Indicative salary range (e.g. $50,000-$60,000)
 
-###  Binary 
+####  Binary 
 | | | 
 |-|-|
 |Telecommuting| True for telecommuting positions. 
@@ -72,7 +72,7 @@ The dataset consists of 17,880 real-life job ads from
 |Questions| True if screening questions are present.
 |**Fraudulent**| 	Classification attribute.
 
-### HTML fragment
+#### HTML fragment
 | | | 
 |-|-|
 |Company profile| A brief company description. 
@@ -80,7 +80,7 @@ The dataset consists of 17,880 real-life job ads from
 |Requirements| Enlisted requirements for the job opening.
 |Benefits| 	Enlisted offered benefits by the employer.
 
-### Nominal
+#### Nominal
 | | | 
 |-|-|
 |Employment type| Full-type, Part-time, Contract, etc. 
@@ -89,13 +89,13 @@ The dataset consists of 17,880 real-life job ads from
 |Industry| Automotive, IT, Health care, Real estate, etc.
 |Function| Consulting, Engineering, Research, Sales etc.
 
-# Data Cleaning and prepping
+## Data Cleaning and prepping
 * HTML tags were removed.
 * Nans were replaced with "Not Specified"
 * Salary range were split between tow categories, "specified" and "not specified"
 * Location, education and industry categories were put under wider buckets and categies with less than 100 value counts were clubbed under "other" category.
 
-### Preview
+## Preview
 **Fraudulent jobs proportion**
 
 ![Image](images/fraud_perc.png)
