@@ -1,7 +1,7 @@
 # Fraud Detection
 images: EDA graphs
 
-dating.ipynb: EDA, Base model, TD-IDF, LSTM analysis
+job_frauds.ipynb: EDA, Base model, TD-IDF, LSTM analysis
 
 helpers.py: helper functions
 
