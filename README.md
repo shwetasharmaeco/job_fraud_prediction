@@ -5,6 +5,8 @@ job_frauds.ipynb: EDA, Base model, TD-IDF, LSTM analysis
 
 helpers.py: helper functions
 
+cleaned_textCol.pkl: dataframe with cleaned text column
+
 ## Methods Used
 
 Data Visualization
