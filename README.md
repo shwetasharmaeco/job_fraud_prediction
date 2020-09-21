@@ -57,8 +57,7 @@ The dataset consists of 17,880 real-life job ads from
 
 #### String Columns
 | | | 
-|-|-|
-|Name| Description 
+|-|-| 
 |Title| The title of the job ad entry.
 |Location| Geographical location of the job ad.
 |Department| Corporate department (e.g. sales).
