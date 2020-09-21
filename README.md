@@ -113,7 +113,7 @@ Given highly imblalanced data set and the problem in hand, correctly identifying
 |AUC| 0.063
 
 ### Recurrent Neural Network
-**LSTM model using all title and HTML columns**
+**LSTM model using title and all HTML columns**
 | | | 
 |-|-|
 |Precision| 0.507
