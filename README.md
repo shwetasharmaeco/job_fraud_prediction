@@ -1,21 +1,21 @@
 # Fraud Detection
 images: EDA graphs
 
-job_frauds.ipynb: EDA, Base model, TD-IDF, LSTM analysis
+`job_frauds`.ipynb: EDA, Base model, TD-IDF, LSTM analysis
 
-helpers.py: helper functions
+`helpers.py`: helper functions
 
-cleaned_textCol.pkl: dataframe with cleaned text column
+`cleaned_textCol.pkl`: dataframe with cleaned text column
 
-tfidf.pkl: TfidfVectorizer
+`tfidf.pkl`: TfidfVectorizer
 
-model.pkl: best trained model
+`model.pkl`: best trained model
 
-server.py: sets up flask app 
+`server.py`: sets up flask app 
 
-static: css and js files
+`static`: css and js files
 
-templates: html files
+`templates`: html files
 
 
 ## Methods Used
