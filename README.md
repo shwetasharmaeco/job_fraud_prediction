@@ -30,6 +30,7 @@ Logistic Regression, Random Forest, Gradient Boosting
 
 Recurrent Neural Netrwork: Long short-term memory (LSTM)
 
+Flask for web-application
 ## Libraries Used
 
 Pandas
