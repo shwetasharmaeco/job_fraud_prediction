@@ -1,9 +1,11 @@
 # Fraud Detection
 images: EDA graphs
 
-dating.ipynb: EDA, Base model, TD-IDF, LSTM analysis
+job_frauds.ipynb: EDA, Base model, TD-IDF, LSTM analysis
 
 helpers.py: helper functions
+
+cleaned_textCol.pkl: dataframe with cleaned text column
 
 ## Methods Used
 
@@ -57,8 +59,7 @@ The dataset consists of 17,880 real-life job ads from
 
 #### String Columns
 | | | 
-|-|-|
-|Name| Description 
+|-|-| 
 |Title| The title of the job ad entry.
 |Location| Geographical location of the job ad.
 |Department| Corporate department (e.g. sales).
@@ -114,7 +115,7 @@ Given highly imblalanced data set and the problem in hand, correctly identifying
 |AUC| 0.063
 
 ### Recurrent Neural Network
-**LSTM model using all title and HTML columns**
+**LSTM model using title and all HTML columns**
 | | | 
 |-|-|
 |Precision| 0.507
