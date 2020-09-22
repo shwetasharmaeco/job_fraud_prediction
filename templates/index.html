@@ -25,11 +25,20 @@
 
   <body>
     <div id="main">
+      <div id= new_listings>
+        <form action= "/get-jobs">
+          <button name="new_postings" type="submit">Get new job posts</button>
+      </form>
+      </div>
 
+
+      <div id= "table">
       {% for table in tables %}
-            {{titles[loop.index]}}
-            {{ table|safe }}
+          {{titles[loop.index]}}
+          {{ table|safe }}
       {% endfor %}
+      </div>
+
 
     </div>
     

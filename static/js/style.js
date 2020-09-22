@@ -17,3 +17,16 @@ for (const elem of list) {
       elem.style.color= "white";
       elem.style.backgroundColor = "green";
     }}
+
+
+
+    $("td").click(function(){
+
+        var value=$(this).parent().siblings(":first").text()
+       
+        alert(value)  ;
+
+        $(this).parent().remove()
+       
+       });
+  

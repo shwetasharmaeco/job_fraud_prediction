@@ -10,3 +10,42 @@
     width: 100px;
     overflow: hidden;
   } */
+
+  button {
+    background-color: rgb(78, 76, 175); 
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 0 auto;
+    margin-left: 500px;
+ 
+  }
+
+
+  #new_listings{
+    position: relative;
+    border-radius: 25px;
+    border: 3px solid rgb(70, 0, 128);
+    margin-top:20px
+  }
+  
+
+  #table{
+    margin-top: 50px
+  }
+
+  table {
+    border-collapse: collapse;
+  }
+  
+  table, th, td {
+    border: 1px solid black;
+  }
+
+  #text{
+      color:white
+  }

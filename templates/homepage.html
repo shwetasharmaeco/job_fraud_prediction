@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<head>
+	<style>	
+
+	h1,h2{font: sans-serif;
+	color: red;
+text-align: center}
+
+	body{background-color: #f4ae72 ;}
+
+	form{text-align: center}
+
+	</style>
+
+	<title> Capstone_3 </title>
+	
+</head>
+<body>
+	 
+    <h1> Fraud Detection </h1>
+    <h2> Presented by: Shweta Sharma</h2>
+
+	<center>
+        <img src="https://www.shutterstock.com/image-photo/hand-writing-job-scams-marker-concept-587641952">
+	</center>
+    <br>
+
+	<form action= "/get-jobs">
+        <button name="postings" type="submit">Predict job postings</button>
+	</form>
+</body>	
+
+{% endblock %}
