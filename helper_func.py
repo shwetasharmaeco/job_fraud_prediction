@@ -20,6 +20,25 @@ from imblearn.under_sampling import RandomUnderSampler
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.model_selection import KFold
 from sklearn.metrics import accuracy_score, precision_score, recall_score, confusion_matrix, f1_score, precision_recall_curve, auc
+from nltk.corpus import stopwords
+REPLACE_BY_SPACE_RE = re.compile('[/(){}\[\]\|@,;]')
+BAD_SYMBOLS_RE = re.compile('[^0-9a-z #+_]')
+STOPWORDS = set(stopwords.words('english'))
+
+
+def clean_text(text):
+    """
+        text: a string
+        
+        return: modified initial string
+    """
+    text = text.lower() # lowercase text
+    text = REPLACE_BY_SPACE_RE.sub(' ', text) # replace REPLACE_BY_SPACE_RE symbols by space in text. substitute the matched string in REPLACE_BY_SPACE_RE with space.
+    text = BAD_SYMBOLS_RE.sub('', text) # remove symbols which are in BAD_SYMBOLS_RE from text. substitute the matched string in BAD_SYMBOLS_RE with nothing. 
+    text = text.replace('x', '')
+    text = ' '.join(word for word in text.split() if word not in STOPWORDS) # remove stopwors from text
+    return text
+
 
 def balance_train_data(X, y, method=None):
     '''
