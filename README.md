@@ -1,5 +1,5 @@
 # Fraud Detection
-images: EDA graphs
+`images`: EDA graphs
 
 `job_frauds`.ipynb: EDA, Base model, TD-IDF, LSTM analysis
 
