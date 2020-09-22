@@ -7,6 +7,17 @@ helpers.py: helper functions
 
 cleaned_textCol.pkl: dataframe with cleaned text column
 
+tfidf.pkl: TfidfVectorizer
+
+model.pkl: best trained model
+
+server.py: sets up flask app 
+
+static: css and js files
+
+templates: html files
+
+
 ## Methods Used
 
 Data Visualization
