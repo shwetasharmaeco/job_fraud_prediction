@@ -3,17 +3,31 @@
 {% block body %}
 
 <head>
+     <!-----------stylesheet tag-------------->
 	<style>	
 
-	h1,h2{font: sans-serif;
-	color: red;
-text-align: center}
+        h1{font-size: 8vw;
+        color: black;
+        text-align: center;
+        margin-top: 200px;
+        font-family:  'Open Sans', sans-serif;;
 
-	body{background-color: #f4ae72 ;}
+        }
 
-	form{text-align: center}
+        h2{
+            text-align: center;
+            font-size: 3vw;
+        }
 
-	</style>
+        body{background-image: linear-gradient( #cc2b5e ,#ffafbd, #ffc3a0)}
+
+        button{background-color: transparent;
+                border: 2px solid black;
+                color: magenta;
+                font-weight: bold;
+            }
+
+    </style>
 
 	<title> Capstone_3 </title>
 	
@@ -22,10 +36,6 @@ text-align: center}
 	 
     <h1> Fraud Detection </h1>
     <h2> Presented by: Shweta Sharma</h2>
-
-	<center>
-        <img src="https://www.shutterstock.com/image-photo/hand-writing-job-scams-marker-concept-587641952">
-	</center>
     <br>
 
 	<form action= "/get-jobs">

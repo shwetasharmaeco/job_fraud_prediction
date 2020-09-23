@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<head>
+	<!-----------jQuery Tags-------------->
+    <script
+      src="http://code.jquery.com/jquery-3.5.1.js"
+      integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+      crossorigin="anonymous"></script>  
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <link href='http://fonts.googleapis.com/css?family=Quicksand:300' rel='stylesheet'type='text/css'>
+    
+    <!-----------stylesheet tag-------------->
+    <link href="../static/css/homepage.css" rel="stylesheet">  
+    <style>
+        button{background-color: transparent;
+                color: black;
+                font-weight: bold;
+                text-align: center;
+                border:2px solid black;
+
+            }
+            h1#date{
+                font-weight:bold;
+                font-size: 15px;
+            }
+
+    </style>
+</head>
+
+<h1 id="date" style="color:red"></h1>
+<body>
+   
+        <form action="/get-jobs">
+            <button  type=submit>Go Back</button>
+        </form>
+
+    <div id="list"></div>
+    <!-----------getting and displaying stored list of fraud jobs -------------->
+   <script> 
+    var x = JSON.parse(window.localStorage.getItem("todoList"));
+    console.log(x)
+        x.forEach(function(entry) {
+            $('#list').append("<ol id='newList'></ol>");
+            for (cnt = x.length-1; cnt < x.length; cnt++) {
+            $("#newList").append("<li id='fraud-list'>"+entry+"</li>"+"<br><br>");
+        }
+    });
+   </script>
+   <script>
+       console.log(localStorage.getItem("time"))
+       document.getElementById('date').innerHTML += localStorage.getItem("time");
+   </script>
+    <!-----------connecting to js-------------->
+    <script type='text/javascript' src="../static/js/style.js"></script>
+
+</body>	
+
+{% endblock %}
