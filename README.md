@@ -17,6 +17,7 @@
 
 `templates`: html files
 
+`fraud_detection.pptx`:  Project's power point presentation
 
 ## Methods Used
 
