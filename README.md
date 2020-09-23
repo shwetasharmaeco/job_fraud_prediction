@@ -7,7 +7,7 @@
 
 `cleaned_textCol.pkl`: dataframe with cleaned text column
 
-`tfidf.pkl`: TfidfVectorizer
+`tfidf.pkl`: Tfidf Vectorizer
 
 `model.pkl`: best trained model
 
